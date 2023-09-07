@@ -1,44 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
+import Button from "./Commons/Button";
 
-export class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: this.props.initialCount,
-    };
-  }
+function Counter(props) {
+  const [counter, setCounter] = useState(props.initialCount);
 
-  increment() {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  }
+  const increment = () => {
+    setCounter(counter + 1);
+  };
 
-  decrement() {
-    this.setState({
-      count: this.state.count - 1,
-    });
-  }
+  const decrement = () => {
+    setCounter(counter - 1);
+  };
 
-  render() {
-    return React.createElement(
-      "div",
-      { style: { color: "red", marginLeft: "60px" } },
-      <div>
-        <p>Current Count: {this.state.count}</p>
-        <button className="inc" onClick={(e) => this.increment()}>
-          Increment!
-        </button>
-        <button className="dec" onClick={(e) => this.decrement()}>
-          Decrement!
-        </button>
+  return (
+    <div className="m-counter">
+      <div className="m-counter__title">{counter}</div>
+      <div className="m-counter__buttons">
+        <Button title={"Increment"} clickAction={increment} />
+        <Button title={"Decrement"} clickAction={decrement} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-ReactDOM.render(
-  React.createElement(Counter, { name: "Counter" }, null),
-  document.querySelector("#root")
-);
+export default Counter;
