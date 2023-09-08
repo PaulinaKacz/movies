@@ -1,38 +1,98 @@
 .App {
+  background: #555;
+  cursor: default;
+}
+
+.m-search {
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  top: -80px;
+  width: 100%;
+}
+
+.m-search__form {
+  position: relative;
+}
+
+.m-search__wrap {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.m-search__button {
+  width: 233px;
+  height: 57px;
+  border-radius: 4px;
+  background: #F65261;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+.m-search__input {
+  width: 713px;
+  height: 57px;
+  border-radius: 4px;
+  background: rgba(50, 50, 50, 0.90);
+  color: #FFF;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 14px;
+  box-sizing: border-box;
+}
+
+.m-genreSelector {
+  background: #232323;
+  margin-top: 30px;
+  padding-left: 60px;
+}
+
+.m-genreSelector__item {
+  color: #FFF;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 30px;
+  height: 59px;
+  
+}
+
+.m-genreSelector__item--selected {
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+.m-counter {
+  color: red;
+  margin: 20px 60px;
+}
+
+.m-counter__title {
+  color: red;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.m-counter__buttons {
+  color: red;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+button {
   color: white;
+  background-color: #F65261;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+          
