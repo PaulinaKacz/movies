@@ -9,7 +9,7 @@ function SearchSection() {
         <b>netflix</b>roulette
       </div>
       <img className="m-search" src={searchBackgroung} alt="movies" />
-      <SearchForm />
+      <SearchForm initialMovie={"Maverick"} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function SearchForm() {
-  const [searchTerm, setSearchTerm] = useState("Maverick");
+function SearchForm(props) {
+  const [searchTerm, setSearchTerm] = useState(props.initialMovie);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -14,7 +14,11 @@ function SearchForm() {
   };
 
   return (
-    <form className="m-search__form" onSubmit={handleSearch}>
+    <form
+      className="m-search__form"
+      onSubmit={handleSearch}
+      aria-label="search-form"
+    >
       <input
         className="m-search__input"
         type="text"
@@ -22,8 +26,14 @@ function SearchForm() {
         placeholder="What do you want to watch?"
         value={searchTerm}
         onChange={handleChange}
+        aria-label="search-input"
+        name="searchInput"
       />
-      <button className="m-search__button" type="submit">
+      <button
+        className="m-search__button"
+        type="submit"
+        aria-label="search-button"
+      >
         Search
       </button>
     </form>

@@ -14,10 +14,22 @@ function Counter(props) {
 
   return (
     <div className="m-counter">
-      <div className="m-counter__title">{counter}</div>
+      <div className="m-counter__title" data-testid="count">
+        {counter}
+      </div>
       <div className="m-counter__buttons">
-        <Button title={"Increment"} clickAction={increment} />
-        <Button title={"Decrement"} clickAction={decrement} />
+        <Button
+          name="btn-increment"
+          title={"Increment"}
+          clickAction={increment}
+          testId="increment-button"
+        />
+        <Button
+          name="btn-decrement"
+          title={"Decrement"}
+          clickAction={decrement}
+          testId="decrement-button"
+        />
       </div>
     </div>
   );
