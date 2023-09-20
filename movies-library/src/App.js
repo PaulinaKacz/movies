@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import Counter from "components/Counter";
+import Counter from "components/Counter/Counter";
 import FilterSection from "components/FilterSection/FilterSection";
 import SearchSection from "components/Search/SearchSection";
 
