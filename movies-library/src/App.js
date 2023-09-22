@@ -1,15 +1,11 @@
 import "./App.css";
 import React from "react";
-import Counter from "components/Counter/Counter";
-import FilterSection from "components/FilterSection/FilterSection";
-import SearchSection from "components/Search/SearchSection";
+import MainPage from "pages/MainPage";
 
 function App() {
   return (
     <div className="App">
-      <SearchSection />
-      <Counter initialCount={1} />
-      <FilterSection />
+      <MainPage />
     </div>
   );
 }

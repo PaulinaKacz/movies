@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Button from "../Commons/Button";
 
-function Counter({ initialCount }) {
-  const [counter, setCounter] = useState(initialCount);
+function Counter(props) {
+  const [counter, setCounter] = useState(props.initialCount);
 
   const increment = () => {
     setCounter(counter + 1);
@@ -14,10 +14,22 @@ function Counter({ initialCount }) {
 
   return (
     <div className="m-counter">
-      <div className="m-counter__title">{counter}</div>
+      <div className="m-counter__title" data-testid="count">
+        {counter}
+      </div>
       <div className="m-counter__buttons">
-        <Button title={"Increment"} clickAction={increment} />
-        <Button title={"Decrement"} clickAction={decrement} />
+        <Button
+          name="btn-increment"
+          title={"Increment"}
+          clickAction={increment}
+          testId="increment-button"
+        />
+        <Button
+          name="btn-decrement"
+          title={"Decrement"}
+          clickAction={decrement}
+          testId="decrement-button"
+        />
       </div>
     </div>
   );

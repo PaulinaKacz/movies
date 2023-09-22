@@ -1,6 +1,7 @@
 .App {
   background: #555;
   cursor: default;
+  height: auto;
 }
 
 .m-search {
@@ -48,9 +49,8 @@
 }
 
 .m-genreSelector {
-  background: #232323;
-  margin-top: 30px;
   padding-left: 60px;
+  display: inline;
 }
 
 .m-genreSelector__item {
@@ -95,4 +95,92 @@ button {
   color: white;
   background-color: #F65261;
 }
+
+.m-movie__tile__img {
+width: 323px;
+height: 486px;
+}
           
+.m-movie__list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 30px;
+  padding: 10px 60px ;
+  color: #FFF;;
+  }
+
+.m-filter {
+  height: 59px;
+  background: #232323;
+  display: flex;
+  justify-content: space-between;
+}
+
+  .m-filter__sortControl {
+    color: #FFF;
+    display: inline-flex; 
+  }
+
+  .custom-select {
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-select__selector {
+    background-color: #232323;
+    border-color: #232323;
+    color: #FFF;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+  }
+
+  .m-filter__sortControl__label {
+    color: #b2aeae;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+  }
+
+  .m-movie__details {
+    display: grid;
+    grid-template-columns: 30% 70% ;
+    column-gap: 30px;
+    padding: 20px 60px;
+  }
+
+  .m-movie__details__header {
+
+  }
+
+  .m-movie__details__header__title {
+    margin-right: 30px;
+  }
+
+  .m-movie__details__info__year {
+    margin-right: 30px;
+  }
+
+  .m-movie__searchIcon {
+    position: absolute; 
+    top: 20px;
+    right: 20px;
+  }
+
+
+
+
+  
