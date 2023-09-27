@@ -4,7 +4,6 @@ import Counter from "./Counter";
 
 export default {
   title: "Example/Counter",
-
   component: Counter,
 };
 
