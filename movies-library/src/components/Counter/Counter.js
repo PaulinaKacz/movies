@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Commons/Button";
+import Button from "../Commons/Button";
 
 function Counter(props) {
   const [counter, setCounter] = useState(props.initialCount);

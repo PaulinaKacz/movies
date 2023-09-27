@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GenreSelector from "./GenreSelector";
+import SortControl from "./SortControl";
 
 const genres = [
   { name: "ALL" },
@@ -9,7 +10,7 @@ const genres = [
   { name: "CRIME" },
 ];
 
-function FilterSection() {
+function FilterSection(props) {
   const [selectedGenre, setSelectedGenre] = useState("ALL");
 
   const changeCategory = (e) => {
@@ -17,11 +18,14 @@ function FilterSection() {
   };
 
   return (
-    <GenreSelector
-      genres={genres}
-      selectedGenre={selectedGenre}
-      selectGenre={changeCategory}
-    />
+    <div className="m-filter">
+      <GenreSelector
+        genres={genres}
+        selectedGenre={selectedGenre}
+        selectGenre={changeCategory}
+      />
+      <SortControl sortBy={props.sortBy} changeSorting={props.changeSorting} />
+    </div>
   );
 }
 
