@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from "react";
 import AddMovieForm from "../components/MovieForm/AddMovieForm/AddMovieForm";
 import { render, fireEvent } from "@testing-library/react";
@@ -29,6 +31,7 @@ describe("Test <AddMovieDelete />", () => {
     );
     const submitButton = getByText(clickedButton);
     const titleHeader = getByText(title);
+
     expect(submitButton).toBeDefined();
     expect(titleHeader).toBeDefined();
 

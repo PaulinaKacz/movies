@@ -157,7 +157,7 @@ height: 486px;
 
   .m-movie__details {
     display: grid;
-    grid-template-columns: 30% 70% ;
+    grid-template-columns: auto 70% ;
     column-gap: 30px;
     padding: 20px 60px;
   }

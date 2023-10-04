@@ -5,14 +5,15 @@ function MovieTile(props) {
     <div
       aria-label={props.movie.title}
       onClick={() => props.selectMovie(props.movie)}
+      data-testid="movie-tile"
     >
       <img
         className="m-movie__tile__img"
-        src={process.env.PUBLIC_URL + `/${props.movie.image}`}
-        alt="logo"
+        src={props.movie.poster_path}
+        alt={props.movie.title}
       />
-      <div>{props.movie.title}</div>
-      <div>{props.movie.releaseYear}</div>
+      <div data-testid="movie-title">{props.movie.title}</div>
+      <div>{props.movie.release_date}</div>
       <div>
         {props.movie.genres.map((genre, index) => (
           <div key={index} aria-label={genre}>

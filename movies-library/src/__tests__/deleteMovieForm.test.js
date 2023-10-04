@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from "react";
 import DeleteMovieForm from "../components/MovieForm/DeleteMovieForm/DeleteMovieForm";
 import { render, fireEvent } from "@testing-library/react";

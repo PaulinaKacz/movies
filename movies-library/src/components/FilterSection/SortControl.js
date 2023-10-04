@@ -12,7 +12,7 @@ function SortControl(props) {
           data-testid="sort-selector"
           className="custom-select__selector "
           value={props.sortBy}
-          onChange={(e) => props.changeSorting(e.target.value)}
+          onChange={(e) => props.changeSortOption(e.target.value)}
         >
           <option
             data-testid="sort-selector-option"

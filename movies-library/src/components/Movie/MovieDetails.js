@@ -2,18 +2,18 @@ import React from "react";
 
 function MovieDetails(props) {
   return (
-    <div className="m-movie__details">
+    <div className="m-movie__details" data-testid="movie-details">
       <img
         className="m-movie__tile__img"
-        src={process.env.PUBLIC_URL + `/${props.selectedMovie.image}`}
-        alt="logo"
+        src={props.selectedMovie.poster_path}
+        alt={props.selectedMovie.title}
       />
       <div>
         <div className="m-movie__details__header">
           <span className="m-movie__details__header__title">
             {props.selectedMovie.title}
           </span>
-          <span>{props.selectedMovie.rating}</span>
+          <span>{props.selectedMovie.vote_average}</span>
         </div>
 
         <div>
@@ -25,14 +25,15 @@ function MovieDetails(props) {
         </div>
         <div>
           <span className="m-movie__details__info__year">
-            {props.selectedMovie.releaseYear}
+            {props.selectedMovie.release_date}
           </span>
-          <span>{props.selectedMovie.duration}</span>
+          <span>{props.selectedMovie.runtime}</span>
         </div>
-        <div>{props.selectedMovie.description}</div>
+        <div>{props.selectedMovie.overview}</div>
         <div
           className="m-movie__searchIcon"
           onClick={() => props.selectMovie("")}
+          data-testid="search-icon"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

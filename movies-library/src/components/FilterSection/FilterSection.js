@@ -12,9 +12,16 @@ const genres = [
 
 function FilterSection(props) {
   const [selectedGenre, setSelectedGenre] = useState("ALL");
+  const [sortBy, setSortBy] = useState("RELEASE DATE");
 
   const changeCategory = (e) => {
     setSelectedGenre(e);
+    props.searchMovies(e, "genre", sortBy);
+  };
+
+  const changeSortOption = (e) => {
+    setSortBy(e);
+    props.searchMovies(selectedGenre, "genre", e);
   };
 
   return (
@@ -24,7 +31,7 @@ function FilterSection(props) {
         selectedGenre={selectedGenre}
         selectGenre={changeCategory}
       />
-      <SortControl sortBy={props.sortBy} changeSorting={props.changeSorting} />
+      <SortControl sortBy={sortBy} changeSortOption={changeSortOption} />
     </div>
   );
 }

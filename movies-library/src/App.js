@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import MainPage from "pages/MainPage";
+import MainPage from "pages/MovieListPage";
 
 function App() {
   return (
