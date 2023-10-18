@@ -13,7 +13,7 @@ function MovieDetails(props) {
           <span className="m-movie__details__header__title">
             {props.selectedMovie.title}
           </span>
-          <span>{props.selectedMovie.vote_average}</span>
+          <span>{props.selectedMovie.rating}</span>
         </div>
         <div>
           {props.selectedMovie.genres.map((genre, index) => (
@@ -24,7 +24,7 @@ function MovieDetails(props) {
         </div>
         <div>
           <span className="m-movie__details__info__year">
-            {props.selectedMovie.release_date}
+            {props.selectedMovie.year}
           </span>
           <span>{props.selectedMovie.runtime}</span>
         </div>

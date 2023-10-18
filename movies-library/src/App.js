@@ -64,9 +64,9 @@ function App() {
             title: movie.title,
             year: movie.release_date,
             genres: movie.genres.map((genre) => ({ name: genre })),
-            duration: `${movie.runtime}`,
+            runtime: movie.runtime,
             rating: movie.vote_average,
-            description: movie.overview,
+            overview: movie.overview,
           }))
         );
       })
