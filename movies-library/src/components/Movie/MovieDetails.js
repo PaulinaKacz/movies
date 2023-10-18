@@ -24,7 +24,7 @@ function MovieDetails(props) {
         </div>
         <div>
           <span className="m-movie__details__info__year">
-            {props.selectedMovie.year}
+            {props.selectedMovie.date}
           </span>
           <span>{props.selectedMovie.runtime}</span>
         </div>

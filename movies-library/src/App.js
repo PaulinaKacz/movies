@@ -62,7 +62,7 @@ function App() {
           response.data.data.map((movie) => ({
             imageUrl: movie.poster_path,
             title: movie.title,
-            year: movie.release_date,
+            date: movie.release_date,
             genres: movie.genres.map((genre) => ({ name: genre })),
             runtime: movie.runtime,
             rating: movie.vote_average,

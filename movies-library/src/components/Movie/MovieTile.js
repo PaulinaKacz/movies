@@ -13,7 +13,7 @@ function MovieTile(props) {
         alt={props.movie.title}
       />
       <div data-testid="movie-title">{props.movie.title}</div>
-      <div>{props.movie.release_date}</div>
+      <div>{props.movie.date}</div>
       <div>
         {props.movie.genres.map((genre, index) => (
           <div key={index} aria-label={genre.name}>
