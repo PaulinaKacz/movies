@@ -6,14 +6,14 @@ function GenreSelector(props) {
       {props.genres.map((genre, index) => (
         <div
           key={index}
-          aria-label={genre.name}
+          aria-label={genre.value}
           className={`m-genreSelector__item ${
-            props.selectedGenre === genre.name &&
+            props.selectedGenre === genre.value &&
             "m-genreSelector__item--selected"
           }`}
-          onClick={() => props.selectGenre(genre.name)}
+          onClick={() => props.selectGenre(genre.value)}
         >
-          <div>{genre.name}</div>
+          <div>{genre.value}</div>
         </div>
       ))}
     </div>

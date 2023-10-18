@@ -1,15 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchForm from "./SearchForm";
 import searchBackgroung from "assets/header-background.png";
 
 function SearchSection(props) {
-  const [searchQuery, setSearchQuery] = useState();
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    props.searchMovies(searchQuery, "title");
-  };
-
   return (
     <div className="m-search__wrap">
       <div>
@@ -17,10 +10,8 @@ function SearchSection(props) {
       </div>
       <img className="m-search" src={searchBackgroung} alt="movies" />
       <SearchForm
-        onSubmit={handleFormSubmit}
-        searchMovies={props.searchMovies}
-        setSearchQuery={props.setSearchQuery}
-        searchQuery={props.searchQuery}
+        searchMovies={props.handleSearch}
+        searchQuery={props.search}
       />
     </div>
   );

@@ -5,7 +5,7 @@ function MovieDetails(props) {
     <div className="m-movie__details" data-testid="movie-details">
       <img
         className="m-movie__tile__img"
-        src={props.selectedMovie.poster_path}
+        src={props.selectedMovie.imageUrl}
         alt={props.selectedMovie.title}
       />
       <div>
@@ -15,11 +15,10 @@ function MovieDetails(props) {
           </span>
           <span>{props.selectedMovie.vote_average}</span>
         </div>
-
         <div>
           {props.selectedMovie.genres.map((genre, index) => (
-            <div key={index} aria-label={genre}>
-              <div>{genre}</div>
+            <div key={index} aria-label={genre.name}>
+              <div>{genre.name}</div>
             </div>
           ))}
         </div>
@@ -32,7 +31,7 @@ function MovieDetails(props) {
         <div>{props.selectedMovie.overview}</div>
         <div
           className="m-movie__searchIcon"
-          onClick={() => props.selectMovie("")}
+          onClick={() => props.navigateMainPage()}
           data-testid="search-icon"
         >
           <svg

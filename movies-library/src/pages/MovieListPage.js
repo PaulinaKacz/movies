@@ -1,50 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Counter from "components/Counter/Counter";
 import FilterSection from "components/FilterSection/FilterSection";
 import SearchSection from "components/Search/SearchSection";
 import MoviesList from "components/Movie/MoviesList";
-import MovieDetails from "components/Movie/MovieDetails";
-import axios from "axios";
+import MovieDetailsCheck from "components/Movie/MovieDetailsCheck";
+import { Route, Routes } from "react-router-dom";
 
-function MovieListPage() {
-  const [selectedMovie, setSelectedMovie] = useState("");
-  const [movieList, setMovieList] = useState([]);
-
-  const BASE_URL = "http://localhost:4000";
-
-  useEffect(() => {
-    searchMovies();
-  }, []);
-
-  const selectMovie = (e) => {
-    setSelectedMovie(e);
-  };
-
-  const searchMovies = (e, searchType, sortBy) => {
-    axios
-      .get(`${BASE_URL}/movies`, {
-        params: {
-          search: e,
-          ...(searchType ? { searchBy: searchType } : {}),
-          ...(sortBy ? { sortBy: sortBy } : {}),
-        },
-      })
-      .then((response) => {
-        setMovieList(response.data.data);
-      })
-      .catch((error) => {});
-  };
+function MovieListPage(props) {
+  const MovieDetailsWrapper = MovieDetailsCheck(
+    props.movies,
+    props.navigateMainPage
+  );
 
   return (
     <>
-      {selectedMovie ? (
-        <MovieDetails selectedMovie={selectedMovie} selectMovie={selectMovie} />
-      ) : (
-        <SearchSection searchMovies={searchMovies} />
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <SearchSection
+              search={props.search}
+              handleSearch={props.findMovie}
+            />
+          }
+        />
+        <Route path=":movieId" element={<MovieDetailsWrapper />} />
+      </Routes>
       <Counter initialCount={1} />
-      <FilterSection searchMovies={searchMovies} />
-      <MoviesList selectMovie={selectMovie} movies={movieList} />
+      <FilterSection
+        sortOptions={props.sortOptions}
+        sortValue={props.sortValue}
+        changeSortOption={props.changeSortOption}
+        genres={props.genreOptions}
+        genreValue={props.genreValue}
+        selectGenre={props.selectGenre}
+      />
+      <MoviesList selectMovie={props.selectMovie} movies={props.movies} />
     </>
   );
 }
