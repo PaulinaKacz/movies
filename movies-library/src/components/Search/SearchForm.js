@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 
 function SearchForm(props) {
-  const [searchTerm, setSearchTerm] = useState(props.initialMovie);
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleChange = (e) => setSearchQuery(e.target.value);
 
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-    // handle search logic here
-    console.log(`Searching for ${searchTerm}...`);
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    props.searchMovies(searchQuery);
   };
 
   return (
     <form
       className="m-search__form"
-      onSubmit={handleSearch}
+      onSubmit={handleFormSubmit}
       aria-label="search-form"
     >
       <input
@@ -24,7 +20,7 @@ function SearchForm(props) {
         type="text"
         id="search"
         placeholder="What do you want to watch?"
-        value={searchTerm}
+        value={searchQuery}
         onChange={handleChange}
         aria-label="search-input"
         name="searchInput"
