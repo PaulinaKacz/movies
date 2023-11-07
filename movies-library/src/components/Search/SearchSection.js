@@ -8,6 +8,7 @@ function SearchSection(props) {
       <div>
         <b>netflix</b>roulette
       </div>
+
       <img className="m-search" src={searchBackgroung} alt="movies" />
       <SearchForm
         searchMovies={props.handleSearch}

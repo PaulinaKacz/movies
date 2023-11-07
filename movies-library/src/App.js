@@ -60,12 +60,13 @@ function App() {
       .then((response) => {
         setMovies(
           response.data.data.map((movie) => ({
-            imageUrl: movie.poster_path,
+            id: movie.id,
+            poster_path: movie.poster_path,
             title: movie.title,
-            date: movie.release_date,
-            genres: movie.genres.map((genre) => ({ name: genre })),
+            release_date: movie.release_date,
+            genres: movie.genres,
             runtime: movie.runtime,
-            rating: movie.vote_average,
+            vote_average: movie.vote_average,
             overview: movie.overview,
           }))
         );
@@ -79,6 +80,38 @@ function App() {
     return () => {
       cancelToken.cancel();
     };
+  };
+
+  const createMovie = (movieData, action) => {
+    axios
+      .post(`${BASE_URL}/movies`, movieData)
+      .then((res) => {
+        navigate("/");
+        console.log("movie added");
+        action(true);
+        setTimeout(() => {
+          action(false);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const updateMovie = (movieData, action) => {
+    axios
+      .put(`${BASE_URL}/movies`, movieData)
+      .then((res) => {
+        navigate("/");
+        console.log("movie updated");
+        action(true);
+        setTimeout(() => {
+          action(false);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -106,6 +139,8 @@ function App() {
         genreValue={genreValue}
         selectGenre={selectGenre}
         navigateMainPage={navigateMainPage}
+        createMovie={createMovie}
+        updateMovie={updateMovie}
       />
     </div>
   ) : (

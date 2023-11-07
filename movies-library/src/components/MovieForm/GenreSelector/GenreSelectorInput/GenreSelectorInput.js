@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ArrowIcon from "../../../Commons/Icons/ArrowIcon";
 import InputCheckbox from "../GenreCheckBox/GenreCheckBox";
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.div`
   background: rgba(50, 50, 50, 0.948044);
   mix-blend-mode: normal;
   opacity: 0.8;
@@ -23,13 +23,14 @@ const StyledContainer = styled.div`
   padding: 18px 23px 15px 18px;
   position: relative;
   user-select: none;
+  z-index: 9999;
 `;
 
-const StyleSelectInput = styled.select`
+export const StyleSelectInput = styled.select`
   display: none;
 `;
 
-const StyledDropDown = styled.div`
+export const StyledDropDown = styled.div`
   background: rgba(35, 35, 35, 0.918051);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.1),
     0 10px 20px rgba(0, 0, 0, 0.1), 0 10px 50px rgba(0, 0, 0, 0.1);
@@ -53,13 +54,13 @@ const StyledDropDown = styled.div`
   }
 `;
 
-const StyledDropdownItem = styled.div`
+export const StyledDropdownItem = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
 `;
 
-const StyledInputCheckbox = styled(InputCheckbox)`
+export const StyledInputCheckbox = styled(InputCheckbox)`
   margin-right: 7px;
 `;
 
@@ -96,7 +97,8 @@ const InputSelect = ({ className, name, options, value, onChange }) => {
             >
               <StyledInputCheckbox
                 value={value.includes(option)}
-                onChange={() => {}}
+                onChange={() => null}
+                isChecked={value.includes(option)}
               />
               {option}
             </StyledDropdownItem>

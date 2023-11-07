@@ -5,6 +5,7 @@ function Button(props) {
     <button
       aria-label={props.name}
       data-testid={props.testId}
+      className={props.className}
       onClick={() => props.clickAction()}
     >
       {props.title}
