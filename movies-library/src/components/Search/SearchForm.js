@@ -1,3 +1,4 @@
+import AddMovieButton from "components/MovieForm/AddMovieForm/AddMovieButton";
 import React, { useState } from "react";
 
 function SearchForm(props) {
@@ -15,6 +16,7 @@ function SearchForm(props) {
       onSubmit={handleFormSubmit}
       aria-label="search-form"
     >
+      <AddMovieButton />
       <input
         className="m-search__input"
         type="text"

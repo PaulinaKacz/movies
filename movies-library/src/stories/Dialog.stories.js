@@ -37,7 +37,7 @@ export const MovieAddTemplate = () => {
     genre: [],
     overview: "",
     runtime: "",
-    rating: "",
+    vote_average: "",
     releaseDate: "",
   });
 
@@ -105,7 +105,7 @@ export const MovieEditTemplate = () => {
     genre: [],
     overview: "Lorem ipsum sit amet...",
     runtime: "2h10min",
-    rating: "8.8",
+    vote_average: "8.8",
     releaseDate: "10.10.2002",
   });
 

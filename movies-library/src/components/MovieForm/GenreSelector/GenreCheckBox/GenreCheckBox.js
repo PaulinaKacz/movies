@@ -83,7 +83,7 @@ const InputCheckbox = (props) => (
       data-testid="checkbox"
       type="checkbox"
       value={String(props.value)}
-      onChange={(e) => props.onChange(!e.target.value)}
+      onChange={(e) => props.onChange(!!e.target.value)}
     />
     {props.isChecked ? <StyledLabelChecked /> : <StyledLabel />}
   </StyledContainer>

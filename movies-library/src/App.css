@@ -33,6 +33,11 @@
   box-sizing: border-box;
 }
 
+.m-search__button--add {
+  position: relative;
+  float: right;
+}
+
 .m-search__input {
   width: 713px;
   height: 57px;
