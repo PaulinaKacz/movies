@@ -1,11 +1,12 @@
-import { useState } from "react";
+// "use client";
 import React from "react";
 import InputText from "../../Commons/InputField/InputField";
 import GenreSelect from "../GenreSelector/GenreSelector";
-
+import { Formik } from "formik";
 import styled from "styled-components";
 import Label from "../../Commons/Label/Label";
 import InputTextarea from "../../Commons/TextArea/TextArea";
+import Button from "../../../components/Commons/Button";
 
 const StyledFormWrapper = styled.div`
   width: 860px;
@@ -92,102 +93,168 @@ const StyledFormButtonSubmit = styled.button`
   border: none;
 `;
 
-const genreOptions = [
-  { name: "Crime" },
-  { name: "Documentary" },
-  { name: "Horror" },
-  { name: "Comedy" },
-];
+export const StyledError = styled.div`
+  font-family: "Montserrat", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #f65261;
+`;
+
+const genreOptions = ["Crime", "Documentary", "Horror", "Comedy"];
 
 const FormMovieAdd = ({ initialData, title, handleSubmit: _handleSubmit }) => {
-  const [model, setModel] = useState(initialData);
+  const handleValidate = (values) =>
+    Object.keys(values).reduce((errors, key) => {
+      if (!values[key]) {
+        errors[key] = "Required";
+      }
+      return errors;
+    }, {});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    _handleSubmit(model);
+  const handleSubmit = (values, { setSubmitting }) => {
+    _handleSubmit(values);
+    setSubmitting(false);
+  };
+
+  const handleSubmit2 = (values) => {
+    _handleSubmit(values);
   };
 
   return (
-    <StyledFormWrapper>
-      <StyledFormTitle>{title}</StyledFormTitle>
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledFormRows>
-          <StyledFormRow>
-            <StyledFormLabelLeft htmlFor="title" title="TITLE">
-              <InputText
-                id="title"
-                value={model.title}
-                onChange={(e) => setModel({ ...model, title: e.target.value })}
-              />
-            </StyledFormLabelLeft>
-            <StyledFormLabelRight htmlFor="release-date" title="RELEASE DATE">
-              <InputText
-                id="release-date"
-                value={model.releaseDate}
-                placeholder="Select Date"
-                onChange={(e) =>
-                  setModel({ ...model, releaseDate: e.target.value })
-                }
-              />
-            </StyledFormLabelRight>
-          </StyledFormRow>
-          <StyledFormRow>
-            <StyledFormLabelLeft htmlFor="movie-url" title="MOVIE URL">
-              <InputText
-                id="movie-url"
-                value={model.movieUrl}
-                placeholder="https://"
-                onChange={(e) =>
-                  setModel({ ...model, movieUrl: e.target.value })
-                }
-              />
-            </StyledFormLabelLeft>
-            <StyledFormLabelRight htmlFor="rating" title="RATING">
-              <InputText
-                id="rating"
-                value={model.rating}
-                placeholder="7.8"
-                onChange={(e) => setModel({ ...model, rating: e.target.value })}
-              />
-            </StyledFormLabelRight>
-          </StyledFormRow>
-          <StyledFormRow>
-            <StyledFormLabelLeft htmlFor="genre" title="GENRE">
-              <GenreSelect
-                genres={genreOptions}
-                onSelect={(e) => setModel({ ...model, genre: e })}
-              />
-            </StyledFormLabelLeft>
-            <StyledFormLabelRight htmlFor="runtime" title="RUNTIME">
-              <InputText
-                id="runtime"
-                value={model.runtime}
-                placeholder="minutes"
-                onChange={(e) =>
-                  setModel({ ...model, runtime: e.target.value })
-                }
-              />
-            </StyledFormLabelRight>
-          </StyledFormRow>
-          <StyledFormRow>
-            <StyledFormLabelTextarea htmlFor="overview" title="OVERVIEW">
-              <StyledTextarea
-                id="overview"
-                value={model.overview}
-                placeholder="Movie description"
-                onChange={(e) =>
-                  setModel({ ...model, overview: e.target.value })
-                }
-              />
-            </StyledFormLabelTextarea>
-          </StyledFormRow>
-        </StyledFormRows>
-        <StyledFormButtons>
-          <StyledFormButtonReset>RESET</StyledFormButtonReset>
-          <StyledFormButtonSubmit>SUBMIT</StyledFormButtonSubmit>
-        </StyledFormButtons>
-      </StyledForm>
-    </StyledFormWrapper>
+    <Formik
+      initialValues={initialData}
+      validate={handleValidate}
+      onSubmit={handleSubmit}
+    >
+      {({
+        values,
+        errors,
+        handleSubmit,
+        isSubmitting,
+        setFieldValue,
+        resetForm,
+      }) => (
+        <StyledFormWrapper>
+          <StyledFormTitle>{title}</StyledFormTitle>
+          <StyledForm onSubmit={handleSubmit}>
+            <StyledFormRows>
+              <StyledFormRow>
+                <StyledFormLabelLeft htmlFor="title" title="TITLE">
+                  <InputText
+                    id="title"
+                    value={values.title}
+                    onChange={(e) =>
+                      setFieldValue("title", e.target.value, true)
+                    }
+                  />
+                  {errors.title && (
+                    <StyledError>
+                      <>{errors.title}</>
+                    </StyledError>
+                  )}
+                </StyledFormLabelLeft>
+                <StyledFormLabelRight
+                  htmlFor="release_date"
+                  title="RELEASE DATE"
+                >
+                  <InputText
+                    id="release_date"
+                    value={values.release_date}
+                    // icon={(<CalendarIcon />)}
+                    placeholder="Select Date"
+                    onChange={(e) =>
+                      setFieldValue("release_date", e.target.value, true)
+                    }
+                  />
+                  {errors.releaseDate && (
+                    <StyledError>{String(errors.releaseDate)}</StyledError>
+                  )}
+                </StyledFormLabelRight>
+              </StyledFormRow>
+              <StyledFormRow>
+                <StyledFormLabelLeft htmlFor="poster_path" title="MOVIE URL">
+                  <InputText
+                    id="poster_path"
+                    value={values.poster_path}
+                    placeholder="https://"
+                    onChange={(e) =>
+                      setFieldValue("poster_path", e.target.value, true)
+                    }
+                  />
+                  {errors.movieUrl && (
+                    <StyledError>{String(errors.movieUrl)}</StyledError>
+                  )}
+                </StyledFormLabelLeft>
+                <StyledFormLabelRight htmlFor="vote_average" title="RATING">
+                  <InputText
+                    id="vote_average"
+                    value={values.vote_average}
+                    placeholder="7.8"
+                    onChange={(e) =>
+                      setFieldValue(
+                        "vote_average",
+                        Number(e.target.value),
+                        true
+                      )
+                    }
+                  />
+                  {errors.vote_average && (
+                    <StyledError>{String(errors.vote_average)}</StyledError>
+                  )}
+                </StyledFormLabelRight>
+              </StyledFormRow>
+              <StyledFormRow>
+                <StyledFormLabelLeft htmlFor="genre" title="GENRE">
+                  <GenreSelect
+                    genres={genreOptions}
+                    onSelect={(e) => setFieldValue("genres", e, true)}
+                  />
+                  {errors.genre && (
+                    <StyledError>{errors.genre.toString()}</StyledError>
+                  )}
+                </StyledFormLabelLeft>
+                <StyledFormLabelRight htmlFor="runtime" title="RUNTIME">
+                  <InputText
+                    id="runtime"
+                    value={values.runtime}
+                    placeholder="minutes"
+                    onChange={(e) =>
+                      setFieldValue("runtime", Number(e.target.value), true)
+                    }
+                  />
+                  {errors.runtime && (
+                    <StyledError>{String(errors.runtime)}</StyledError>
+                  )}
+                </StyledFormLabelRight>
+              </StyledFormRow>
+              <StyledFormRow>
+                <StyledFormLabelTextarea htmlFor="overview" title="OVERVIEW">
+                  <StyledTextarea
+                    id="overview"
+                    value={values.overview}
+                    placeholder="Movie description"
+                    onChange={(e) =>
+                      setFieldValue("overview", e.target.value, true)
+                    }
+                  />
+                  {errors.overview && (
+                    <StyledError>{String(errors.overview)}</StyledError>
+                  )}
+                </StyledFormLabelTextarea>
+              </StyledFormRow>
+            </StyledFormRows>
+            <StyledFormButtons>
+              <StyledFormButtonReset type="reset" onClick={() => resetForm()}>
+                RESET
+              </StyledFormButtonReset>
+              <Button title={"SUBMIT"} onClick={() => handleSubmit2(values)} />
+            </StyledFormButtons>
+          </StyledForm>
+        </StyledFormWrapper>
+      )}
+    </Formik>
   );
 };
 

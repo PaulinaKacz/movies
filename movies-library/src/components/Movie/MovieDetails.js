@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 function MovieDetails(props) {
@@ -5,7 +7,7 @@ function MovieDetails(props) {
     <div className="m-movie__details" data-testid="movie-details">
       <img
         className="m-movie__tile__img"
-        src={props.selectedMovie.imageUrl}
+        src={props.selectedMovie.poster_path}
         alt={props.selectedMovie.title}
       />
       <div>
@@ -13,18 +15,18 @@ function MovieDetails(props) {
           <span className="m-movie__details__header__title">
             {props.selectedMovie.title}
           </span>
-          <span>{props.selectedMovie.rating}</span>
+          <span>{props.selectedMovie.vote_average}</span>
         </div>
         <div>
           {props.selectedMovie.genres.map((genre, index) => (
-            <div key={index} aria-label={genre.name}>
-              <div>{genre.name}</div>
+            <div key={index} aria-label={genre}>
+              <div>{genre}</div>
             </div>
           ))}
         </div>
         <div>
           <span className="m-movie__details__info__year">
-            {props.selectedMovie.date}
+            {props.selectedMovie.release_date}
           </span>
           <span>{props.selectedMovie.runtime}</span>
         </div>

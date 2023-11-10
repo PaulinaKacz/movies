@@ -1,116 +1,153 @@
-import "./App.css";
-import MainPage from "pages/MovieListPage";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+// "use client";
 
-function App() {
-  const navigate = useNavigate();
-  const BASE_URL = "http://localhost:4000";
+// import "./App.css";
+// import MainPage from "pages/MovieListPage";
+// import React, { useEffect, useState } from "react";
+// // import { useNavigate, useSearchParams } from "react-router-dom";
+// import axios from "axios";
 
-  let [searchParams, setSearchParams] = useSearchParams();
+// function App() {
+//   const navigate = useNavigate();
+//   const BASE_URL = "http://localhost:4000";
 
-  const [movies, setMovies] = useState(null);
-  const [sortValue, setSortValue] = useState(
-    searchParams.get("sortedBy") ?? ""
-  );
-  const [genreValue, setGenreValue] = useState(searchParams.get("genre") ?? "");
-  const [search, setSearch] = useState(searchParams.get("search") ?? "");
-  const [genreOptions] = useState([
-    { label: "Comedy", value: "Comedy" },
-    { label: "Drama", value: "Drama" },
-    { label: "Romance", value: "Romance" },
-    { label: "Animation", value: "Animation" },
-  ]);
-  const [sortOptions] = useState([
-    { label: "Release Date", value: "Release Date" },
-    { label: "Title", value: "Title" },
-  ]);
+//   let [searchParams, setSearchParams] = useSearchParams();
 
-  const findMovie = (searchQuery) => {
-    setSearch(searchQuery);
-  };
+//   const [movies, setMovies] = useState(null);
+//   const [sortValue, setSortValue] = useState(
+//     searchParams.get("sortedBy") ?? ""
+//   );
+//   const [genreValue, setGenreValue] = useState(searchParams.get("genre") ?? "");
+//   const [search, setSearch] = useState(searchParams.get("search") ?? "");
+//   const [genreOptions] = useState([
+//     { label: "Comedy", value: "Comedy" },
+//     { label: "Drama", value: "Drama" },
+//     { label: "Romance", value: "Romance" },
+//     { label: "Animation", value: "Animation" },
+//   ]);
+//   const [sortOptions] = useState([
+//     { label: "Release Date", value: "Release Date" },
+//     { label: "Title", value: "Title" },
+//   ]);
 
-  const sortMovie = (value) => {
-    setSortValue(value);
-  };
-  const selectGenre = (value) => {
-    setGenreValue(value);
-  };
+//   const findMovie = (searchQuery) => {
+//     setSearch(searchQuery);
+//   };
 
-  const selectMovie = (movieIdValue) => {
-    navigate(`/${movieIdValue}`);
-  };
+//   const sortMovie = (value) => {
+//     setSortValue(value);
+//   };
+//   const selectGenre = (value) => {
+//     setGenreValue(value);
+//   };
 
-  const navigateMainPage = () => {
-    navigate("/");
-  };
+//   const selectMovie = (movieIdValue) => {
+//     navigate(`/${movieIdValue}`);
+//   };
 
-  const searchMovies = (sortValue, genreValue, search) => {
-    const cancelToken = axios.CancelToken.source();
-    axios
-      .get(`${BASE_URL}/movies`, {
-        params: {
-          search: search,
-          ...(genreValue ? { filter: genreValue } : {}),
-          ...(sortValue ? { sortBy: sortValue } : {}),
-          searchBy: "title",
-        },
-      })
-      .then((response) => {
-        setMovies(
-          response.data.data.map((movie) => ({
-            imageUrl: movie.poster_path,
-            title: movie.title,
-            date: movie.release_date,
-            genres: movie.genres.map((genre) => ({ name: genre })),
-            runtime: movie.runtime,
-            rating: movie.vote_average,
-            overview: movie.overview,
-          }))
-        );
-      })
-      .catch((error) => {
-        if (axios.isCancel(error)) return;
-        const result = error.response;
-        return Promise.reject(result);
-      });
+//   const navigateMainPage = () => {
+//     navigate("/");
+//   };
 
-    return () => {
-      cancelToken.cancel();
-    };
-  };
+//   const searchMovies = (sortValue, genreValue, search) => {
+//     const cancelToken = axios.CancelToken.source();
+//     axios
+//       .get(`${BASE_URL}/movies`, {
+//         params: {
+//           search: search,
+//           ...(genreValue ? { filter: genreValue } : {}),
+//           ...(sortValue ? { sortBy: sortValue } : {}),
+//           searchBy: "title",
+//         },
+//       })
+//       .then((response) => {
+//         setMovies(
+//           response.data.data.map((movie) => ({
+//             id: movie.id,
+//             poster_path: movie.poster_path,
+//             title: movie.title,
+//             release_date: movie.release_date,
+//             genres: movie.genres,
+//             runtime: movie.runtime,
+//             vote_average: movie.vote_average,
+//             overview: movie.overview,
+//           }))
+//         );
+//       })
+//       .catch((error) => {
+//         if (axios.isCancel(error)) return;
+//         const result = error.response;
+//         return Promise.reject(result);
+//       });
 
-  useEffect(() => {
-    searchMovies(sortValue, genreValue, search);
-  }, [sortValue, genreValue, search, setMovies]);
+//     return () => {
+//       cancelToken.cancel();
+//     };
+//   };
 
-  useEffect(() => {
-    searchParams.set("search", search);
-    searchParams.set("genre", genreValue);
-    searchParams.set("sortedBy", sortValue);
-    setSearchParams(searchParams);
-  }, [search, genreValue, sortValue, searchParams, setSearchParams]);
+//   const createMovie = (movieData, action) => {
+//     axios
+//       .post(`${BASE_URL}/movies`, movieData)
+//       .then((res) => {
+//         navigate("/");
+//         console.log("movie added");
+//         action(true);
+//         setTimeout(() => {
+//           action(false);
+//         }, 1000);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
 
-  return movies ? (
-    <div className="App">
-      <MainPage
-        search={search}
-        findMovie={findMovie}
-        movies={movies}
-        selectMovie={selectMovie}
-        sortOptions={sortOptions}
-        sortValue={sortValue}
-        changeSortOption={sortMovie}
-        genreOptions={genreOptions}
-        genreValue={genreValue}
-        selectGenre={selectGenre}
-        navigateMainPage={navigateMainPage}
-      />
-    </div>
-  ) : (
-    <div>Loading</div>
-  );
-}
+//   const updateMovie = (movieData, action) => {
+//     axios
+//       .put(`${BASE_URL}/movies`, movieData)
+//       .then((res) => {
+//         navigate("/");
+//         console.log("movie updated");
+//         action(true);
+//         setTimeout(() => {
+//           action(false);
+//         }, 1000);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
 
-export default App;
+//   useEffect(() => {
+//     searchMovies(sortValue, genreValue, search);
+//   }, [sortValue, genreValue, search, setMovies]);
+
+//   useEffect(() => {
+//     searchParams.set("search", search);
+//     searchParams.set("genre", genreValue);
+//     searchParams.set("sortedBy", sortValue);
+//     setSearchParams(searchParams);
+//   }, [search, genreValue, sortValue, searchParams, setSearchParams]);
+
+//   return movies ? (
+//     <div className="App">
+//       <MainPage
+//         search={search}
+//         findMovie={findMovie}
+//         movies={movies}
+//         selectMovie={selectMovie}
+//         sortOptions={sortOptions}
+//         sortValue={sortValue}
+//         changeSortOption={sortMovie}
+//         genreOptions={genreOptions}
+//         genreValue={genreValue}
+//         selectGenre={selectGenre}
+//         navigateMainPage={navigateMainPage}
+//         createMovie={createMovie}
+//         updateMovie={updateMovie}
+//       />
+//     </div>
+//   ) : (
+//     <div>Loading</div>
+//   );
+// }
+
+// export default App;

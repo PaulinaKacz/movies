@@ -16,7 +16,7 @@ describe("Test <AddMovieDelete />", () => {
       genre: [],
       overview: "",
       runtime: "",
-      rating: "",
+      vote_average: "",
       releaseDate: "",
     });
 

@@ -8,19 +8,13 @@ describe("Test <GenreSelector />", () => {
   };
 
   const handleOnChangeGenre = jest.fn();
-  const genres = [
-    { name: "ALL" },
-    { name: "DOCUMENTARY" },
-    { name: "COMEDY" },
-    { name: "HORROR" },
-    { name: "CRIME" },
-  ];
+  const genres = ["ALL", "DOCUMENTARY", "COMEDY", "HORROR", "CRIME"];
 
   test.each(genres)(
     "test that component renders all genres passed in props",
     (genre) => {
       setup();
-      expect(screen.getByText(genre.name)).toBeTruthy();
+      expect(screen.getByText(genre)).toBeTruthy();
     }
   );
 

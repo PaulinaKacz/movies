@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import SearchForm from "./SearchForm";
-import searchBackgroung from "assets/header-background.png";
+import searchBackgroung from "../../assets/header-background.png";
 
 function SearchSection(props) {
   return (
@@ -8,6 +10,7 @@ function SearchSection(props) {
       <div>
         <b>netflix</b>roulette
       </div>
+
       <img className="m-search" src={searchBackgroung} alt="movies" />
       <SearchForm
         searchMovies={props.handleSearch}

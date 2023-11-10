@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
 
@@ -83,7 +84,7 @@ const InputCheckbox = (props) => (
       data-testid="checkbox"
       type="checkbox"
       value={String(props.value)}
-      onChange={(e) => props.onChange(!e.target.value)}
+      onChange={(e) => props.onChange(!!e.target.value)}
     />
     {props.isChecked ? <StyledLabelChecked /> : <StyledLabel />}
   </StyledContainer>

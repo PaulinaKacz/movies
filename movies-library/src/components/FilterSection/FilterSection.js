@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import GenreSelector from "./GenreSelector";
 import SortControl from "./SortControl";

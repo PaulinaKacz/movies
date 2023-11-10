@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 
-import Counter from "./Counter";
+// import Counter from "./Counter";
 
-export default {
-  title: "Example/Counter",
-  component: Counter,
-};
+// export default {
+//   title: "Example/Counter",
+//   component: Counter,
+// };
 
-export const BasicCounter = () => <Counter initialCount={1} />;
+// export const BasicCounter = () => <Counter initialCount={1} />;
