@@ -1,3 +1,4 @@
+// "use client";
 import React from "react";
 import InputText from "../../Commons/InputField/InputField";
 import GenreSelect from "../GenreSelector/GenreSelector";
@@ -5,6 +6,7 @@ import { Formik } from "formik";
 import styled from "styled-components";
 import Label from "../../Commons/Label/Label";
 import InputTextarea from "../../Commons/TextArea/TextArea";
+import Button from "../../../components/Commons/Button";
 
 const StyledFormWrapper = styled.div`
   width: 860px;
@@ -114,6 +116,10 @@ const FormMovieAdd = ({ initialData, title, handleSubmit: _handleSubmit }) => {
   const handleSubmit = (values, { setSubmitting }) => {
     _handleSubmit(values);
     setSubmitting(false);
+  };
+
+  const handleSubmit2 = (values) => {
+    _handleSubmit(values);
   };
 
   return (
@@ -243,9 +249,7 @@ const FormMovieAdd = ({ initialData, title, handleSubmit: _handleSubmit }) => {
               <StyledFormButtonReset type="reset" onClick={() => resetForm()}>
                 RESET
               </StyledFormButtonReset>
-              <StyledFormButtonSubmit type="submit" disabled={isSubmitting}>
-                SUBMIT
-              </StyledFormButtonSubmit>
+              <Button title={"SUBMIT"} onClick={() => handleSubmit2(values)} />
             </StyledFormButtons>
           </StyledForm>
         </StyledFormWrapper>

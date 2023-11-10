@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import { Portal } from "react-portal";
 import styled from "styled-components";
 import CloseIcon from "../Commons/Icons/CloseIcon";
+import Link from "next/link";
 
 const StyledDialogOverlay = styled.div`
   position: fixed;
@@ -34,7 +36,8 @@ const StyledDialogHeader = styled.div`
   padding: 30px 30px 11px 30px;
 `;
 
-const StyledCloseButton = styled.button` // }) //   "data-testid": "close-modal-button", // .attrs({
+const StyledCloseButton = styled.button`
+  // }) //   "data-testid": "close-modal-button", // .attrs({
   background: none;
   box-shadow: none;
   padding: 0;
@@ -54,22 +57,19 @@ const StyledDialogContent = styled.div`
 const Dialog = (props) => (
   <>
     {props.isOpened && (
-      <Portal>
-        <StyledDialogOverlay>
-          <StyledDialogContainer>
-            <StyledDialogHeader>
-              <StyledCloseButton
-                data-testid="close-modal-button"
-                onClick={props.onCloseButtonClick}
-              >
+      <StyledDialogOverlay>
+        <StyledDialogContainer>
+          <StyledDialogHeader>
+            <Link href="/">
+              <StyledCloseButton data-testid="close-modal-button">
                 <StyledCloseIcon />
                 {props.title}
               </StyledCloseButton>
-            </StyledDialogHeader>
-            <StyledDialogContent>{props.children}</StyledDialogContent>
-          </StyledDialogContainer>
-        </StyledDialogOverlay>
-      </Portal>
+            </Link>
+          </StyledDialogHeader>
+          <StyledDialogContent>{props.children}</StyledDialogContent>
+        </StyledDialogContainer>
+      </StyledDialogOverlay>
     )}
   </>
 );

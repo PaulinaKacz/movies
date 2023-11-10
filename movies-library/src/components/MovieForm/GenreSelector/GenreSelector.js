@@ -1,3 +1,4 @@
+"use client";
 import { useMemo, useState } from "react";
 import React from "react";
 import InputSelect from "./GenreSelectorInput/GenreSelectorInput";

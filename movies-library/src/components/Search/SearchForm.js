@@ -1,4 +1,6 @@
-import AddMovieButton from "components/MovieForm/AddMovieForm/AddMovieButton";
+"use client";
+
+import AddMovieButton from "../../components/MovieForm/AddMovieForm/AddMovieButton";
 import React, { useState } from "react";
 
 function SearchForm(props) {

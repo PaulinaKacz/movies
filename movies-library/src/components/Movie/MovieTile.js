@@ -1,7 +1,11 @@
-import EditMovieButton from "components/MovieForm/AddMovieForm/EditMovieButton";
+"use client";
+
+import EditMovieButton from "../MovieForm/AddMovieForm/EditMovieButton";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 function MovieTile(props) {
+  const router = useRouter();
   return (
     <div aria-label={props.movie.title} data-testid="movie-tile">
       <EditMovieButton title={props.movie.title} />
@@ -9,7 +13,7 @@ function MovieTile(props) {
         className="m-movie__tile__img"
         src={props.movie.poster_path}
         alt={props.movie.title}
-        onClick={() => props.selectMovie(props.movie.title)}
+        onClick={() => router.push(`/${props.movie.id}`)}
       />
       <div data-testid="movie-title">{props.movie.title}</div>
       <div>{props.movie.release_date}</div>

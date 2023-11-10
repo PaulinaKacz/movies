@@ -1,5 +1,4 @@
-export const FormModel = (props) => ({
-  id: props?.id ?? null,
+export const NewFormModel = (props) => ({
   title: props?.title ?? "",
   poster_path: props?.poster_path ?? "",
   genres: props?.genres ?? [],

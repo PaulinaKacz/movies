@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 function Button(props) {
@@ -6,7 +7,6 @@ function Button(props) {
       aria-label={props.name}
       data-testid={props.testId}
       className={props.className}
-      onClick={() => props.clickAction()}
     >
       {props.title}
     </button>

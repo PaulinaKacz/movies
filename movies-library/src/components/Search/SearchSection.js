@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import SearchForm from "./SearchForm";
-import searchBackgroung from "assets/header-background.png";
+import searchBackgroung from "../../assets/header-background.png";
 
 function SearchSection(props) {
   return (
